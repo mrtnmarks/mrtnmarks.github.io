@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charity Profile</title>
+<style type="text/css">
+li {
+  list-style: none;
+  display: inline-block;
+}
+li a {
+  color: antiquewhite;
+  font-size: 22px;
+  font-weight: bold;
+  margin-right: 30px;
+}
+p {
+  text-align: center;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}</style>
+
+<link rel="stylesheet" href="styles.css" />
+  </head>
+  <header>
+    <h1 class="title"><a href="index.html">HelpHub</a></h1>
+    <p>Join us in making a difference.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="charity_profile.html">Charity Profile</a>
+    <a href="charities.html">Charities</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+    <h1 style="text-align: center; font-style: italic; color: #333; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+      Contact Me
+    </h1>
+    <article id="contactme"></article>
+    <p>Please feel free to write any questions, comments, or concerns!</p>
+    <form action="https://httpbin.org/get" method="get">
+      <p>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" placeholder="Jane Doe" />
+      </p>
+      <p>
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="123@gmail.com"
+        />
+        <br />
+        <br />
+        <label for="message" style="align-items: center">Your Message:</label>
+        <br />
+        <textarea
+          name="message"
+          id="message"
+          cols="30"
+          rows="15"
+          placeholder="Please enter your message here....."
+          style="align-content: center"
+        ></textarea>
+        <br />
+        <button type="submit" style="align-self: center">Submit</button>
+      </p>
+      <p>
+        Pressing question? Want to contact me asap? Email me<a
+          href="mailto:martinimarks@gmail.com"
+        >
+          here.</a
+        >
+      </p>
+    </form>
+  </body>
+</html>

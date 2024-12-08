@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charity Profile</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <header>
+    <h1 class="title"><a href="index.html">HelpHub</a></h1>
+    <p>Join us in making a difference.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="charity_profile.html">Charity Profile</a>
+    <a href="charities.html">Charities</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <body class="profilepage">
+    <div class="charity-profile">
+      <h1 class="charity-name">Charity Name</h1>
+      <p class="charity-description">
+        This is a brief description of the charity. It explains the mission,
+        values, and the impact this charity aims to make in the community. By
+        supporting this organization, you're contributing to meaningful change
+        and helping those in need.
+      </p>
+
+      <div class="charity-images">
+        <img src="example1.jpg" alt="Example Image 1" />
+        <img src="example2.jpg" alt="Example Image 2" />
+        <img src="example3.jpg" alt="Example Image 3" />
+      </div>
+
+      <button id="openFormButton" class="volunteer-btn">Volunteer Now</button>
+    </div>
+
+    <div id="modalOverlay"></div>
+    <div id="userFormModal">
+      <h2>Enter Your Information</h2>
+      <form id="userForm">
+        <input
+          type="text"
+          id="name"
+          class="form-input"
+          placeholder="Your Name"
+          required
+        />
+        <input
+          type="tel"
+          id="phone"
+          class="form-input"
+          placeholder="Your Phone Number"
+          required
+        />
+        <input
+          type="email"
+          id="email"
+          class="form-input"
+          placeholder="Your Email"
+          required
+        />
+        <button type="submit" class="volunteer-btn">Submit</button>
+        <button type="button" id="closeFormButton" class="volunteer-btn">
+          Cancel
+        </button>
+      </form>
+    </div>
+
+    <script>
+      // JavaScript for handling modal and form submission
+      const openFormButton = document.getElementById("openFormButton");
+      const closeFormButton = document.getElementById("closeFormButton");
+      const modalOverlay = document.getElementById("modalOverlay");
+      const userFormModal = document.getElementById("userFormModal");
+      const userForm = document.getElementById("userForm");
+
+      // Open the form modal
+      openFormButton.addEventListener("click", () => {
+        modalOverlay.style.display = "block";
+        userFormModal.style.display = "block";
+      });
+
+      // Close the form modal
+      closeFormButton.addEventListener("click", closeModal);
+      modalOverlay.addEventListener("click", closeModal);
+
+      function closeModal() {
+        modalOverlay.style.display = "none";
+        userFormModal.style.display = "none";
+      }
+
+      // Handle form submission
+      userForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent actual form submission
+
+        // Collect user data
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const email = document.getElementById("email").value;
+
+        // Log or process the data (example: console log here)
+        console.log(`Name: ${name}, Phone: ${phone}, Email: ${email}`);
+
+        // Optionally close the modal
+        closeModal();
+        alert("Thank you for submitting your information!");
+      });
+    </script>
+    
+        <script async defer src="https://embeds.every.org/0.4/button.js"></script>
+      </head>
+      <body>
+        <a data-every-style href="https://www.every.org/lilbubsbigfund#/donate"
+          >Donate</a
+        >
+
+  </body>
+</html>

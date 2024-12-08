@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HelpHub Homepage</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .charity-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .charity-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        width: 300px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .charity-card h3 {
+        margin-top: 0;
+      }
+      .loading-message,
+      .error-message {
+        color: #555;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="title"><a href="index.html">HelpHub</a></h1>
+      <p>Join us in making a difference.</p>
+    </header>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="charity_profile.html">Charity Profile</a>
+      <a href="charities.html">Charities</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <div class="content">
+      <h2>About HelpHub</h2>
+      <p>
+        Our goal is to connect people with charitable organizations that align
+        with their passions. Browse our list of trusted charities, learn more
+        about each one, and sign up to make a positive impact!
+      </p>
+
+      <h1>Our Mission</h1>
+      <p>
+        <b>HelpHub</b> is a new online platform dedicated to empowering
+        communities through volunteerism. Our mission is to connect individuals
+        with local charities and organizations that align with their passions
+        and interests. By making it easy to discover meaningful volunteer
+        opportunities, HelpHub aims to strengthen bonds within neighborhoods and
+        foster a culture of giving back. Whether you're interested in
+        environmental conservation, supporting local shelters, or assisting with
+        community events, HelpHub provides a streamlined way to find nearby
+        opportunities that fit your schedule. Join us in building stronger, more
+        compassionate communities by helping others—one volunteer at a time.
+      </p>
+    </div>
+
+    <!-- Section to display charity data -->
+    <div>
+      <h2>Discover Local Charities</h2>
+      <p class="loading-message" id="loading-message">Loading charities...</p>
+      <p class="error-message" id="error-message"></p>
+      <div class="charity-container" id="charity-list"></div>
+    </div>
+
+    <div class="indexpics">
+      <div class="column">
+        <img
+          src="handstogether.jpeg"
+          alt="Coming Together"
+          style="width: 90%"
+        />
+      </div>
+      <div class="column">
+        <img src="together.jpeg" alt="Greater Cause" style="width: 95%" />
+      </div>
+      <div class="column">
+        <img src="volunteers.jpeg" alt="Local Volunteers" style="width: 100%" />
+      </div>
+    </div>
+
+    <script src="api.js" defer></script>
+
+    <!-- Script to fetch and display charity data -->
+    <script>
+      const API_KEY = "YOUR_API_KEY_HERE"; // Replace with your API key
+      const CHARITY_API_URL = `https://api.data.charitynavigator.org/v2/Organizations?app_id=YOUR_APP_ID&app_key=${API_KEY}`;
+
+      async function fetchCharities() {
+        const charityList = document.getElementById("charity-list");
+        const loadingMessage = document.getElementById("loading-message");
+        const errorMessage = document.getElementById("error-message");
+
+        try {
+          // Fetch data from the API
+          const response = await fetch(CHARITY_API_URL);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+
+          // Hide the loading message
+          loadingMessage.style.display = "none";
+
+          // Display charity data
+          data.forEach((charity) => {
+            const card = document.createElement("div");
+            card.classList.add("charity-card");
+            card.innerHTML = `
+              <h3>${charity.charityName}</h3>
+              <p>${charity.mission || "No mission statement available."}</p>
+              <a href="${charity.websiteURL}" target="_blank">Visit Website</a>
+            `;
+            charityList.appendChild(card);
+          });
+        } catch (error) {
+          // Hide the loading message and display an error message
+          loadingMessage.style.display = "none";
+          errorMessage.textContent =
+            "Sorry, we couldn't fetch charity data at this time. Please try again later.";
+          console.error("Fetch error:", error);
+        }
+      }
+
+      // Fetch charity data when the page loads
+      fetchCharities();
+    </script>
+  </body>
+</html>
